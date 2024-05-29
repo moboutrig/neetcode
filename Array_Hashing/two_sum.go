@@ -3,22 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{15, 7, 11, 2}
-	target := 9
+	nums := []int{1, 3, 3}
+	target := 6
 	result := twoSum(nums, target)
-	fmt.Println(result) // Output: [0, 1]
+	fmt.Println(result)
 }
 
 func twoSum(nums []int, target int) []int {
-	nMap := make(map[int]int)
-	for i, num := range nums {
-		com := target - num
-		// fmt.Println(com)
-		// fmt.Println(nMap)
-		if index, ok := nMap[com]; ok {
-			return []int{index, i}
+	MMAP := make(map[int]int)
+	for index2, num := range nums {
+		compiment := target - num
+		if idex1, ok := MMAP[compiment]; ok {
+			return []int{idex1, index2}
 		}
-		nMap[num] = i
+		MMAP[num] = index2
+		fmt.Println(MMAP)
 	}
-	return []int{}
+	return []int{0, 0}
 }
