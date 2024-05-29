@@ -4,29 +4,25 @@ import (
 	"fmt"
 )
 
-// isAnagram function to check if two strings are anagrams
 func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
-	s_track, t_track := make(map[rune]int), make(map[rune]int)
-	populateMaps(s, t, s_track, t_track, 0)
-	return mapsAreEqual(s_track, t_track)
-}
 
-// populateMaps function to populate the character count maps recursively for both strings
-func populateMaps(s, t string, s_track, t_track map[rune]int, index int) {
-	if index == len(s) {
-		return
+	sCharCount := make(map[rune]int, len(s))
+	tCharCount := make(map[rune]int, len(t))
+
+	for i := 0; i < len(s); i++ {
+		sCharCount[rune(s[i])]++
+		tCharCount[rune(t[i])]++
 	}
-	s_track[rune(s[index])]++
-	t_track[rune(t[index])]++
-	populateMaps(s, t, s_track, t_track, index+1)
+
+	return mapsAreEqual(sCharCount, tCharCount)
 }
 
-func mapsAreEqual(m1, m2 map[rune]int) bool {
-	for k, v := range m1 {
-		if v2, ok := m2[k]; !ok || v != v2 {
+func mapsAreEqual(map1, map2 map[rune]int) bool {
+	for k, v := range map1 {
+		if v2, ok := map2[k]; !ok || v != v2 {
 			return false
 		}
 	}
